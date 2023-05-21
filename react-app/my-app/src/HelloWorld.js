@@ -1,14 +1,13 @@
 import React, {Fragment} from "react";
+import "./HelloWorld.css"
 
-function HelloWorld() {
+function HelloWorld(props) {
     return (
-<Fragment>
-    <hr />
-    <h1>Hello, World! from another</h1>
-    
-</Fragment>
+        <Fragment>
+            <hr />
+            <h1 className="h1-green">{props.msg}</h1>
+        </Fragment>
     );
-       
 }
 
 export default HelloWorld;
