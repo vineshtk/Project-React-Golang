@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useEffect, useRef, useState} from "react";
 import "./App.css"
 import Input from "./Input.js"
 
@@ -8,6 +8,11 @@ function HelloWorld(props) {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [dob, setDob] = useState("")
+
+    // refs
+    const firstNameRef = useRef();
+    const lastNameRef = useRef(null);
+    const dobRef = useRef(null);
 
     const toggleTrue = ()=> {
         if (isTrue){
@@ -39,7 +44,37 @@ function HelloWorld(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(firstName, lastName, dob)
+        
+        if(lastName !==""){
+            addPerson(firstName, lastName, dob);
+        }
+    }
+
+    const addPerson = (newFirst, newLast, newDOB) => {
+        let newPerson = {
+            id: crowd.length +1,
+            firstName:newFirst,
+            lastName:newLast,
+            dob:newDOB
+        }
+        const newList = crowd.concat(newPerson);
+        const sorted = newList.sort((a,b) => {
+            if (a.lastName < b.lastName){
+                return -1;
+            }else if(a.lastName > b.lastName){
+                return 1;
+            }
+            return 0;
+        })
+        // clearing the variable value
+        setCrowd(sorted);
+        setFirstName("");
+        setLastName("");
+        setDob("");
+
+        firstNameRef.current.value = "";
+        lastNameRef.current.value = "";
+        dobRef.current.value = "";
     }
 
     return (
@@ -72,6 +107,7 @@ function HelloWorld(props) {
                     type="text"
                     name="first-name"
                     id="first-name"
+                    ref={firstNameRef}
                     autoComplete="first-name-new"
                     className="form-control"
                     onChange={(event) =>setFirstName(event.target.value)}
@@ -82,6 +118,7 @@ function HelloWorld(props) {
                 title="Last Name"
                 type="text"
                 name="last-name"
+                ref={lastNameRef}
                 autoComplete="last-name-new"
                 className="form-control"
                 onChange={(event) =>setLastName(event.target.value)}
@@ -91,6 +128,7 @@ function HelloWorld(props) {
                 title="Date of Birth"
                 type="date"
                 name="dob"
+                ref={dobRef}
                 autoComplete="dob-new"
                 className="form-control"
                 onChange={(event) =>setDob(event.target.value)}
