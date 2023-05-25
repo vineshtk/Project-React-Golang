@@ -11,6 +11,7 @@ import Movie from './components/Movie';
 import EditMovie from './components/EditMovie'
 import ManageCatalogue from './components/ManageCatalogue'
 import Login from './components/Login'
+// import Card from './components/Card'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/movies",
         element: <Movies />
+      },
+      {
+        path: "/movies/:id",
+        element: <Movie />
       },
       {
         path: "/genres",
