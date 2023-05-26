@@ -28,12 +28,11 @@
 
 }
 
-
 .flip-card-front{
     background-image: 
     linear-gradient(
         to bottom right,
-        #FF6868, #FF68DE
+        #b9a023, #32dbe7
             );
 }
 
@@ -45,7 +44,7 @@
 .flip-card-back{
     background-image: 
     linear-gradient(
-        315deg, #FDC639, #FF7C60
+        315deg, #FDC639, #5d90ee
     );
     color: #ffffff;
     transform: rotateY(180deg);
