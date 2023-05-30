@@ -18,11 +18,10 @@ func main() {
 
 	// connect to database
 	app.Domain = "example.com"
-	http.HandleFunc("/", Hello)
 
 	log.Println("Starting application on port:", port)
 	// start a web browser
-	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", port), app.routes())
 	if err != nil {
 		log.Fatal(err)
 	}
