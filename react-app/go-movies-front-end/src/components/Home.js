@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import Ticket from "./../images/ticketbutton.png"
 import Card from "./Card";
 import "./Card.css"
 const Home = () => {
